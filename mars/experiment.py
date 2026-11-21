@@ -50,6 +50,8 @@ class Experiment:
             add("density", physics.density(p, h), "kg/m3", altitude_m=float(h))
             add("gravity", physics.gravity(p, h), "m/s2", altitude_m=float(h))
         for ls in ls_values_deg:
+            add("surface_pressure_seasonal", physics.pressure(p, 0.0, ls), "Pa",
+                altitude_m=0.0, solar_longitude_deg=float(ls))
             add("daily_mean_insolation", physics.daily_mean_insolation(p, latitude_deg, ls),
                 "W/m2", latitude=float(latitude_deg), solar_longitude_deg=float(ls))
             add("noon_insolation", physics.insolation_toa(p, latitude_deg, 12.0, ls),

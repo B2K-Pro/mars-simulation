@@ -76,3 +76,20 @@ def test_levels_and_validity():
 def test_unknown_parameter_rejected():
     with pytest.raises(KeyError):
         params(inexistant=1)
+
+
+def test_seasonal_factor_min_max_and_mean():
+    p = params()
+    assert physics.seasonal_pressure_factor(p, 150.0) == pytest.approx(0.875)
+    assert physics.seasonal_pressure_factor(p, 260.0) == pytest.approx(1.125)
+    mean = sum(physics.seasonal_pressure_factor(p, ls) for ls in range(360)) / 360.0
+    assert mean == pytest.approx(1.0, abs=0.01)
+
+
+def test_seasonal_pressure_changes_with_ls():
+    p = params()
+    assert physics.pressure(p, 0.0, 150.0) < physics.pressure(p, 0.0) < physics.pressure(p, 0.0, 260.0)
+
+
+def test_new_reference_keys_levels():
+    assert Experiment("t", REFS, overrides={"seasonal_pressure_ptp_fraction": 0.30}).validity() == "within_uncertainty"

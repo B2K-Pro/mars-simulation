@@ -30,6 +30,26 @@
     "source": "NASA NSSDCA Mars Fact Sheet (site Viking 1)"
   },
   {
+    "key": "ls_pressure_max",
+    "label": "Longitude solaire (Ls) du maximum annuel de pression",
+    "category": "atmosphere",
+    "value": 260.0,
+    "unit": "deg",
+    "min_value": null,
+    "max_value": null,
+    "source": "Maximum vers Ls 260° (InSight)"
+  },
+  {
+    "key": "ls_pressure_min",
+    "label": "Longitude solaire (Ls) du minimum annuel de pression",
+    "category": "atmosphere",
+    "value": 150.0,
+    "unit": "deg",
+    "min_value": 145.0,
+    "max_value": 150.0,
+    "source": "Minimum observé vers Ls 150° (Perseverance, InSight) ; modèles : Ls 145°"
+  },
+  {
     "key": "mean_molecular_weight",
     "label": "Masse moléculaire moyenne de l'atmosphère",
     "category": "atmosphere",
@@ -58,6 +78,16 @@
     "min_value": null,
     "max_value": null,
     "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "seasonal_pressure_ptp_fraction",
+    "label": "Amplitude saisonnière de la pression (crête à crête, fraction de la moyenne)",
+    "category": "atmosphere",
+    "value": 0.25,
+    "unit": "sans unité",
+    "min_value": 0.25,
+    "max_value": 0.3,
+    "source": "Environ 25 % (mesures de Curiosity/RAD) à 30 % (atterrisseurs Viking), cycle de condensation du CO2"
   },
   {
     "key": "surface_density",
@@ -90,20 +120,20 @@
     "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
   },
   {
-    "key": "co_fraction",
-    "label": "Monoxyde de carbone (CO), fraction volumique",
+    "key": "co2_fraction",
+    "label": "Dioxyde de carbone (CO2), fraction volumique",
     "category": "composition",
-    "value": 0.06,
+    "value": 95.1,
     "unit": "%",
     "min_value": null,
     "max_value": null,
     "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
   },
   {
-    "key": "co2_fraction",
-    "label": "Dioxyde de carbone (CO2), fraction volumique",
+    "key": "co_fraction",
+    "label": "Monoxyde de carbone (CO), fraction volumique",
     "category": "composition",
-    "value": 95.1,
+    "value": 0.06,
     "unit": "%",
     "min_value": null,
     "max_value": null,

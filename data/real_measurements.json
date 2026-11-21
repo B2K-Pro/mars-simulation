@@ -1,0 +1,82 @@
+[
+  {
+    "mission": "Curiosity",
+    "instrument": "REMS",
+    "variable": "surface_pressure_daily_min",
+    "value": 685,
+    "unit": "Pa",
+    "latitude": -4.49,
+    "longitude": 137.42,
+    "source": "Gómez-Elvira (REMS), 2012, relayé par CBS News"
+  },
+  {
+    "mission": "Curiosity",
+    "instrument": "REMS",
+    "variable": "surface_pressure_daily_max",
+    "value": 780,
+    "unit": "Pa",
+    "latitude": -4.49,
+    "longitude": 137.42,
+    "source": "Gómez-Elvira (REMS), 2012, relayé par CBS News"
+  },
+  {
+    "mission": "Curiosity",
+    "instrument": "REMS",
+    "variable": "surface_pressure_daily_mean_early",
+    "value": 730,
+    "unit": "Pa",
+    "latitude": -4.49,
+    "longitude": 137.42,
+    "source": "3 premières semaines, 2012, relayé par Christian Science Monitor"
+  },
+  {
+    "mission": "Curiosity",
+    "instrument": "REMS",
+    "variable": "surface_pressure_daily_mean_later",
+    "value": 750,
+    "unit": "Pa",
+    "latitude": -4.49,
+    "longitude": 137.42,
+    "source": "quelques semaines plus tard, 2012, relayé par Christian Science Monitor"
+  },
+  {
+    "mission": "Curiosity",
+    "instrument": "REMS",
+    "variable": "air_temperature_night_min",
+    "value": 203.15,
+    "unit": "K",
+    "latitude": -4.49,
+    "longitude": 137.42,
+    "source": "-70 °C avant l'aube, 2012, relayé par Phys.org"
+  },
+  {
+    "mission": "Curiosity",
+    "instrument": "REMS",
+    "variable": "air_temperature_afternoon_max",
+    "value": 279.15,
+    "unit": "K",
+    "latitude": -4.49,
+    "longitude": 137.42,
+    "source": "6 °C l'après-midi, 2012, relayé par NBC News"
+  },
+  {
+    "mission": "Curiosity",
+    "instrument": "REMS",
+    "variable": "air_temperature_diurnal_mean_before_dust_storm",
+    "value": 231,
+    "unit": "K",
+    "latitude": -4.49,
+    "longitude": 137.42,
+    "source": "Viúdez-Moreiras et al., tempête de 2018"
+  },
+  {
+    "mission": "Curiosity",
+    "instrument": "REMS",
+    "variable": "air_temperature_diurnal_mean_during_dust_storm",
+    "value": 227,
+    "unit": "K",
+    "latitude": -4.49,
+    "longitude": 137.42,
+    "source": "Viúdez-Moreiras et al., tempête de 2018"
+  }
+]

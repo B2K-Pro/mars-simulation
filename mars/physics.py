@@ -28,6 +28,7 @@ USED_KEYS = [
     "mass", "mean_radius", "mean_temperature", "mean_molecular_weight",
     "surface_pressure_mean", "solar_irradiance", "bond_albedo",
     "obliquity", "solar_day_length",
+    "seasonal_pressure_ptp_fraction", "ls_pressure_min", "ls_pressure_max",
 ]
 
 
@@ -42,17 +43,42 @@ def scale_height(p: Parameters) -> float:
     return R_GAS * p.si("mean_temperature") / (p.si("mean_molecular_weight") * float(gravity(p)))
 
 
-def pressure(p: Parameters, altitude_m=0.0):
-    """Pression (Pa) : équilibre hydrostatique isotherme avec g qui décroît avec l'altitude."""
+def seasonal_pressure_factor(p: Parameters, ls_deg: float) -> float:
+    """Facteur saisonnier de la pression (1 = moyenne annuelle).
+
+    Cycle du CO2 (condensation/sublimation aux pôles), simplifié : un minimum et
+    un maximum par an, reliés par des demi-cosinus. Le cycle réel a un second
+    minimum et un second maximum plus faibles (non modélisés ici).
+    """
+    amp = p.raw("seasonal_pressure_ptp_fraction") / 2.0
+    lmin = p.raw("ls_pressure_min") % 360.0
+    lmax = p.raw("ls_pressure_max") % 360.0
+    up = (lmax - lmin) % 360.0          # durée (en degrés de Ls) du minimum vers le maximum
+    d = (ls_deg - lmin) % 360.0
+    if d <= up:
+        shape = -math.cos(math.pi * d / up)
+    else:
+        shape = math.cos(math.pi * (d - up) / (360.0 - up))
+    return 1.0 + amp * shape
+
+
+def pressure(p: Parameters, altitude_m=0.0, ls_deg=None):
+    """Pression (Pa) : équilibre hydrostatique isotherme avec g qui décroît avec l'altitude.
+
+    Sans ls_deg : pression moyenne annuelle. Avec ls_deg : pression à cette saison.
+    """
     r0 = p.si("mean_radius")
     h = np.asarray(altitude_m, dtype=float)
     k = p.si("mean_molecular_weight") * G * p.si("mass") / (R_GAS * p.si("mean_temperature"))
-    return p.si("surface_pressure_mean") * np.exp(-k * (1.0 / r0 - 1.0 / (r0 + h)))
+    base = p.si("surface_pressure_mean") * np.exp(-k * (1.0 / r0 - 1.0 / (r0 + h)))
+    if ls_deg is not None:
+        base = base * seasonal_pressure_factor(p, ls_deg)
+    return base
 
 
-def density(p: Parameters, altitude_m=0.0):
+def density(p: Parameters, altitude_m=0.0, ls_deg=None):
     """Densité de l'air (kg/m3) par la loi des gaz parfaits."""
-    return pressure(p, altitude_m) * p.si("mean_molecular_weight") / (R_GAS * p.si("mean_temperature"))
+    return pressure(p, altitude_m, ls_deg) * p.si("mean_molecular_weight") / (R_GAS * p.si("mean_temperature"))
 
 
 def equilibrium_temperature(p: Parameters) -> float:
