@@ -1,0 +1,302 @@
+[
+  {
+    "key": "atmosphere_total_mass",
+    "label": "Masse totale de l'atmosphère",
+    "category": "atmosphere",
+    "value": 2.5e+16,
+    "unit": "kg",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (valeur approximative)"
+  },
+  {
+    "key": "diurnal_temp_max",
+    "label": "Température maximale diurne (site Viking 1)",
+    "category": "atmosphere",
+    "value": 242,
+    "unit": "K",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (site Viking 1)"
+  },
+  {
+    "key": "diurnal_temp_min",
+    "label": "Température minimale diurne (site Viking 1)",
+    "category": "atmosphere",
+    "value": 184,
+    "unit": "K",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (site Viking 1)"
+  },
+  {
+    "key": "mean_molecular_weight",
+    "label": "Masse moléculaire moyenne de l'atmosphère",
+    "category": "atmosphere",
+    "value": 43.49,
+    "unit": "g/mol",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "mean_temperature",
+    "label": "Température moyenne",
+    "category": "atmosphere",
+    "value": 214,
+    "unit": "K",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (valeur approximative)"
+  },
+  {
+    "key": "scale_height",
+    "label": "Hauteur d'échelle atmosphérique",
+    "category": "atmosphere",
+    "value": 11.0,
+    "unit": "km",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "surface_density",
+    "label": "Densité de l'air en surface",
+    "category": "atmosphere",
+    "value": 0.016,
+    "unit": "kg/m3",
+    "min_value": 0.01,
+    "max_value": 0.022,
+    "source": "NASA NSSDCA Mars Fact Sheet (0,016 ± 0,006)"
+  },
+  {
+    "key": "surface_pressure_mean",
+    "label": "Pression de surface (rayon moyen)",
+    "category": "atmosphere",
+    "value": 636,
+    "unit": "Pa",
+    "min_value": 400,
+    "max_value": 870,
+    "source": "NASA NSSDCA Mars Fact Sheet (6,36 mb ; plage saisonnière 4,0 à 8,7 mb)"
+  },
+  {
+    "key": "ar_fraction",
+    "label": "Argon (Ar), fraction volumique",
+    "category": "composition",
+    "value": 1.94,
+    "unit": "%",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "co_fraction",
+    "label": "Monoxyde de carbone (CO), fraction volumique",
+    "category": "composition",
+    "value": 0.06,
+    "unit": "%",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "co2_fraction",
+    "label": "Dioxyde de carbone (CO2), fraction volumique",
+    "category": "composition",
+    "value": 95.1,
+    "unit": "%",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "h2o_ppm",
+    "label": "Vapeur d'eau (H2O), fraction volumique",
+    "category": "composition",
+    "value": 210,
+    "unit": "ppm",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "n2_fraction",
+    "label": "Azote (N2), fraction volumique",
+    "category": "composition",
+    "value": 2.59,
+    "unit": "%",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "o2_fraction",
+    "label": "Dioxygène (O2), fraction volumique",
+    "category": "composition",
+    "value": 0.16,
+    "unit": "%",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "obliquity",
+    "label": "Obliquité (inclinaison de l'axe)",
+    "category": "orbite",
+    "value": 25.19,
+    "unit": "deg",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "orbital_eccentricity",
+    "label": "Excentricité orbitale",
+    "category": "orbite",
+    "value": 0.0935,
+    "unit": "sans unité",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "semimajor_axis",
+    "label": "Demi-grand axe",
+    "category": "orbite",
+    "value": 227956000,
+    "unit": "km",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "sidereal_orbit_period",
+    "label": "Période orbitale sidérale",
+    "category": "orbite",
+    "value": 686.98,
+    "unit": "jours terrestres",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "sidereal_rotation_period",
+    "label": "Période de rotation sidérale",
+    "category": "orbite",
+    "value": 24.6229,
+    "unit": "h",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "solar_day_length",
+    "label": "Durée du jour solaire (sol)",
+    "category": "orbite",
+    "value": 24.6597,
+    "unit": "h",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "bond_albedo",
+    "label": "Albédo de Bond",
+    "category": "planete",
+    "value": 0.25,
+    "unit": "sans unité",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "equatorial_radius",
+    "label": "Rayon équatorial",
+    "category": "planete",
+    "value": 3396.2,
+    "unit": "km",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "escape_velocity",
+    "label": "Vitesse de libération",
+    "category": "planete",
+    "value": 5.03,
+    "unit": "km/s",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "mass",
+    "label": "Masse de Mars",
+    "category": "planete",
+    "value": 6.4169e+23,
+    "unit": "kg",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "mean_density",
+    "label": "Densité moyenne",
+    "category": "planete",
+    "value": 3934,
+    "unit": "kg/m3",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "mean_radius",
+    "label": "Rayon moyen volumétrique",
+    "category": "planete",
+    "value": 3389.5,
+    "unit": "km",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "polar_radius",
+    "label": "Rayon polaire",
+    "category": "planete",
+    "value": 3376.2,
+    "unit": "km",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "solar_irradiance",
+    "label": "Irradiance solaire moyenne",
+    "category": "planete",
+    "value": 586.2,
+    "unit": "W/m2",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "surface_gravity_equator",
+    "label": "Accélération de surface à l'équateur",
+    "category": "planete",
+    "value": 3.69,
+    "unit": "m/s2",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "surface_gravity_mean",
+    "label": "Gravité de surface (moyenne)",
+    "category": "planete",
+    "value": 3.73,
+    "unit": "m/s2",
+    "min_value": null,
+    "max_value": null,
+    "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  }
+]
