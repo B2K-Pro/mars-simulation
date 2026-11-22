@@ -328,5 +328,15 @@
     "min_value": null,
     "max_value": null,
     "source": "NASA NSSDCA Mars Fact Sheet (maj 19 mai 2025)"
+  },
+  {
+    "key": "thermal_inertia",
+    "label": "Inertie thermique du sol (cratère Gale)",
+    "category": "planete",
+    "value": 295.0,
+    "unit": "J m-2 K-1 s-1/2",
+    "min_value": 295.0,
+    "max_value": 452.0,
+    "source": "Martínez et al. 2014 (J. Geophys. Res. Planets, 119, 1822) : 295 (Rocknest), 306 (PL) et 452 (Yellowknife Bay) à partir des mesures de température du sol de Curiosity"
   }
 ]

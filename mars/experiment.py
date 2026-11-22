@@ -50,6 +50,11 @@ class Experiment:
             add("density", physics.density(p, h), "kg/m3", altitude_m=float(h))
             add("gravity", physics.gravity(p, h), "m/s2", altitude_m=float(h))
         for ls in ls_values_deg:
+            _, tsurf = physics.surface_temperature_cycle(p, latitude_deg, ls)
+            for name, val in (("surface_temperature_min", tsurf.min()),
+                              ("surface_temperature_max", tsurf.max()),
+                              ("surface_temperature_mean", tsurf.mean())):
+                add(name, val, "K", latitude=float(latitude_deg), solar_longitude_deg=float(ls))
             add("surface_pressure_seasonal", physics.pressure(p, 0.0, ls), "Pa",
                 altitude_m=0.0, solar_longitude_deg=float(ls))
             add("daily_mean_insolation", physics.daily_mean_insolation(p, latitude_deg, ls),

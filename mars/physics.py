@@ -29,6 +29,7 @@ USED_KEYS = [
     "surface_pressure_mean", "solar_irradiance", "bond_albedo",
     "obliquity", "solar_day_length",
     "seasonal_pressure_ptp_fraction", "ls_pressure_min", "ls_pressure_max",
+    "thermal_inertia",
 ]
 
 
@@ -110,3 +111,51 @@ def insolation_toa(p: Parameters, lat_deg: float, local_time_h, ls_deg: float):
 def daily_mean_insolation(p: Parameters, lat_deg: float, ls_deg: float, n: int = 288) -> float:
     t = np.linspace(0.0, 24.0, n, endpoint=False)
     return float(np.mean(insolation_toa(p, lat_deg, t, ls_deg)))
+
+
+def surface_temperature_cycle(p: Parameters, lat_deg: float, ls_deg: float,
+                              n_steps: int = 192, max_days: int = 80, tol_k: float = 0.01):
+    """Température de la SURFACE (K) au cours d'un sol, à l'équilibre périodique.
+
+    Bilan d'énergie en surface : (1 - albédo) x flux solaire = rayonnement émis (corps noir)
+    + chaleur conduite dans le sol. Le sol conduit la chaleur selon son inertie thermique I.
+
+    Limites connues : pas d'atmosphère (ni poussière, ni rayonnement infrarouge de l'air),
+    donc nuits trop froides et midi trop chaud ; sol homogène ; distance au Soleil moyenne.
+
+    Retourne (heures_locales, températures_de_surface).
+    """
+    sigma = SIGMA
+    albedo = p.si("bond_albedo")
+    period = p.si("solar_day_length")                     # secondes
+    inertia = p.raw("thermal_inertia")                    # J m-2 K-1 s-1/2
+    c = inertia * math.sqrt(math.pi / period)             # W m-2 K-1 (par unité de profondeur réduite)
+    dz = 0.25                                             # pas de profondeur, en épaisseurs de peau
+    nz = 40                                               # 0 à 10 épaisseurs de peau
+    dt = 1.0 / n_steps                                    # en fraction de sol
+    r = math.pi * dt / dz**2                              # coefficient de diffusion (stable si <= 0.5)
+
+    times = 24.0 * np.arange(n_steps) / n_steps
+    flux = (1.0 - albedo) * insolation_toa(p, lat_deg, times, ls_deg)
+
+    mean_flux = float(np.mean(flux))
+    t0 = max(((mean_flux / sigma) ** 0.25), 60.0)
+    T = np.full(nz, t0)
+    ts_prev = None
+    ts = np.zeros(n_steps)
+    for _day in range(max_days):
+        for k in range(n_steps):
+            ts_k = T[0]
+            for _ in range(6):                            # résolution de Newton du bilan d'énergie
+                g = c * (3.0 * ts_k - 4.0 * T[1] + T[2]) / (2.0 * dz)
+                f = flux[k] - sigma * ts_k**4 - g
+                df = -4.0 * sigma * ts_k**3 - 3.0 * c / (2.0 * dz)
+                ts_k = ts_k - f / df
+            T[0] = ts_k
+            ts[k] = ts_k
+            T[1:-1] = T[1:-1] + r * (T[2:] - 2.0 * T[1:-1] + T[:-2])
+            T[-1] = T[-2]
+        if ts_prev is not None and float(np.max(np.abs(ts - ts_prev))) < tol_k:
+            break
+        ts_prev = ts.copy()
+    return times, ts.copy()

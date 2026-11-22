@@ -58,11 +58,20 @@ def main(argv=None):
     verdict = "dans la fourchette mesurée" if lo <= p_season <= hi else "hors de la fourchette mesurée"
     print(f"  Verdict                         : {verdict}")
 
-    print("\nTempérature : le modèle n'a pas encore de température locale (seulement la température")
-    print(f"  d'équilibre globale, {physics.equilibrium_temperature(p):.1f} K). Mesure à Gale : "
-          f"moyenne diurne ~{meas['air_temperature_diurnal_mean_before_dust_storm']['value']:.0f} K.")
-    print("  -> comparaison possible à l'étape suivante (modèle de température par latitude).\n")
-
+    # --- Température (au site de Gale, saison proche de l'atterrissage) ---
+    lat = meas["surface_pressure_daily_min"]["latitude"]
+    _, ts = physics.surface_temperature_cycle(p, lat, ls)
+    n_min = meas["air_temperature_night_min"]["value"]
+    n_max = meas["air_temperature_afternoon_max"]["value"]
+    n_mean = meas["air_temperature_diurnal_mean_before_dust_storm"]["value"]
+    print(f"\nTempérature à Gale (latitude {lat:.1f}°, Ls = {ls:.0f}°, inertie thermique {p.raw('thermal_inertia'):.0f})")
+    print(f"  {'':<28}{'modèle (sol)':>14}{'mesure (air)':>14}{'écart':>9}")
+    for label, mod, mes in (("Minimum (avant l'aube)", ts.min(), n_min),
+                            ("Maximum (après-midi)", ts.max(), n_max),
+                            ("Moyenne sur le sol", ts.mean(), n_mean)):
+        print(f"  {label:<28}{mod:>12.1f} K{mes:>12.1f} K{mod - mes:>+7.1f} K")
+    print("  Attention : le modèle donne la température du SOL, la mesure est celle de l'AIR,")
+    print("  et le modèle n'a pas encore d'atmosphère (nuits trop froides attendues).\n")
 
 if __name__ == "__main__":
     main()

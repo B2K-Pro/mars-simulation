@@ -93,3 +93,28 @@ def test_seasonal_pressure_changes_with_ls():
 
 def test_new_reference_keys_levels():
     assert Experiment("t", REFS, overrides={"seasonal_pressure_ptp_fraction": 0.30}).validity() == "within_uncertainty"
+
+
+def test_surface_temperature_is_periodic_and_physical():
+    times, ts = physics.surface_temperature_cycle(params(), 0.0, 0.0)
+    assert ts.min() > 100 and ts.max() < 350
+    assert ts.max() > ts.min()
+    assert times[ts.argmax()] == pytest.approx(13.0, abs=2.0)   # maximum en début d'après-midi
+
+
+def test_higher_thermal_inertia_gives_smaller_temperature_swing():
+    _, low = physics.surface_temperature_cycle(params(thermal_inertia=100.0), 0.0, 0.0)
+    _, high = physics.surface_temperature_cycle(params(thermal_inertia=1000.0), 0.0, 0.0)
+    assert (high.max() - high.min()) < (low.max() - low.min())
+
+
+def test_mean_surface_temperature_close_to_equilibrium_value():
+    _, ts = physics.surface_temperature_cycle(params(), 0.0, 0.0)
+    flux_mean = physics.daily_mean_insolation(params(), 0.0, 0.0) * (1 - 0.25)
+    t_eq = (flux_mean / physics.SIGMA) ** 0.25
+    assert ts.mean() == pytest.approx(t_eq, abs=15.0)
+
+
+def test_thermal_inertia_levels():
+    assert Experiment("t", REFS, overrides={"thermal_inertia": 400.0}).validity() == "within_uncertainty"
+    assert Experiment("t", REFS, overrides={"thermal_inertia": 50.0}).validity() == "sandbox"
